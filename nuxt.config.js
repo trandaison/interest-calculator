@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'interest-calculator',
+    title: 'Công Cụ Tính Lãi Suất Vay',
     htmlAttrs: {
       lang: 'en',
     },
@@ -11,6 +11,9 @@ export default {
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    bodyAttrs: {
+      class: 'bg-gray-100',
+    },
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
