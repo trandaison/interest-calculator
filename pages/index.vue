@@ -5,12 +5,10 @@
     >
       <div class="w-full lg:w-5/6">
         <div
-          class="my-8 bg-white border-2 border-gray-300 p-6 rounded-xl tracking-wide shadow-lg"
+          class="my-8 bg-gray-800 text-gray-500 p-6 rounded tracking-wide shadow-xl"
         >
           <div class="text-center mb-4">
-            <h3 class="text-2xl font-semibold text-gray-800">
-              Tính Lãi Suất Vay
-            </h3>
+            <h3 class="text-2xl font-semibold text-white">Tính Lãi Suất Vay</h3>
             <p class="m-0 text-gray-500">Dư nợ giảm dần</p>
           </div>
           <div class="mb-2">
@@ -19,11 +17,11 @@
               <input
                 v-model="amount"
                 type="number"
-                class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                class="px-4 py-2 bg-gray-900 focus:ring-gray-500 focus:border-gray-700 w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-400"
               />
               <select
                 v-model="amountMultiple"
-                class="ml-4 px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                class="ml-4 px-4 py-2 bg-gray-900 focus:ring-gray-500 focus:border-gray-700 w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-400"
               >
                 <option
                   v-for="option in amountMultipleOptions"
@@ -40,11 +38,11 @@
               <input
                 v-model="loanDuration"
                 type="number"
-                class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                class="px-4 py-2 bg-gray-900 focus:ring-gray-500 focus:border-gray-700 w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-400"
               />
               <select
                 v-model="durationMultiple"
-                class="ml-4 px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                class="ml-4 px-4 py-2 bg-gray-900 focus:ring-gray-500 focus:border-gray-700 w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-400"
               >
                 <option
                   v-for="option in durationMultipleOptions"
@@ -60,7 +58,7 @@
             <input
               v-model="interestRate"
               type="number"
-              class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+              class="px-4 py-2 bg-gray-900 focus:ring-gray-500 focus:border-gray-700 w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-400"
             />
           </div>
           <div class="mb-2">
@@ -68,7 +66,7 @@
             <input
               v-model="disbursementDate"
               type="date"
-              class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+              class="px-4 py-2 bg-gray-900 focus:ring-gray-500 focus:border-gray-700 w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-400"
             />
           </div>
           <div class="mb-2">
@@ -76,7 +74,7 @@
             <input
               v-model="discountRate"
               type="number"
-              class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+              class="px-4 py-2 bg-gray-900 focus:ring-gray-500 focus:border-gray-700 w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-400"
             />
           </div>
           <div class="mb-2">
@@ -85,11 +83,11 @@
               <input
                 v-model="loanDiscountDuration"
                 type="number"
-                class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                class="px-4 py-2 bg-gray-900 focus:ring-gray-500 focus:border-gray-700 w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-400"
               />
               <select
                 v-model="discountDurationMultiple"
-                class="ml-4 px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                class="ml-4 px-4 py-2 bg-gray-900 focus:ring-gray-500 focus:border-gray-700 w-full sm:text-sm border-gray-900 rounded-md focus:outline-none text-gray-400"
               >
                 <option
                   v-for="option in durationMultipleOptions"
@@ -140,13 +138,13 @@ export default class Home extends Vue {
   private amountMultiple: number = 1000000
   private readonly amountMultipleOptions = amountMultipleOptions()
   private loanDuration: number = NaN
-  private durationMultiple: number = 1
+  private durationMultiple: number = 12
   private durationMultipleOptions = durationMultipleOptions()
   private interestRate: number = NaN
   private disbursementDate: string = moment().format('YYYY-MM-DD')
   private discountRate: number = NaN
   private loanDiscountDuration: number = NaN
-  private discountDurationMultiple: number = NaN
+  private discountDurationMultiple: number = 12
 
   get depositeAmount() {
     return this.amount * this.amountMultiple
@@ -185,6 +183,7 @@ export default class Home extends Vue {
         monthlyAmount,
         monthlyInterest,
         monthlyTotal: monthlyInterest + monthlyAmount,
+        isDiscount: true,
       })
     }
 
@@ -204,6 +203,7 @@ export default class Home extends Vue {
         monthlyAmount,
         monthlyInterest,
         monthlyTotal: monthlyInterest + monthlyAmount,
+        isDiscount: false,
       })
     }
     return months
@@ -218,3 +218,9 @@ export default class Home extends Vue {
   }
 }
 </script>
+
+<style>
+body {
+  overflow-y: scroll;
+}
+</style>
